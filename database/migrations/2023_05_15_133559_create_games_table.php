@@ -15,6 +15,18 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
+            $table->string('title', 150);
+            $table->string('image')->nullable();
+            $table->text('description');
+            $table->string('price', 10);
+            $table->string('genre');
+            $table->string('developer', 70);
+            $table->string('publisher', 30);
+            $table->date('release_date');
+            $table->float('score', 3,1)->nullable();
+            $table->string('original_language', 20);
+            $table->text('available_language');
+            $table->boolean('released')->default(true);
             $table->timestamps();
         });
     }
