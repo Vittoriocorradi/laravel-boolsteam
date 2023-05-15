@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('price', 10);
             $table->string('genre');
             $table->string('developer', 70);
-            $table->string('publisher', 30);
+            $table->string('publisher', 70);
             $table->date('release_date');
             $table->float('score', 3,1)->nullable();
             $table->string('original_language', 20);
