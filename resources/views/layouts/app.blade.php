@@ -8,7 +8,7 @@
 </head>
 <body>
     <main>
-        @yield(page.main)
+        @yield('page.main')
     </main>
 </body>
 </html>
