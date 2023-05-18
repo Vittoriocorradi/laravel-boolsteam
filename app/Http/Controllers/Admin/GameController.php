@@ -18,9 +18,11 @@ class GameController extends Controller
     {
         $games = Game::all();
 
+
     //index riceve array comics
     return view('games.index', compact('games'));
     }        
+
 
     /**
      * Show the form for creating a new resource.
@@ -41,6 +43,7 @@ class GameController extends Controller
      */
     public function store(StoreGameRequest $request)
     {
+
         $data =$request->all();
 
         $newGame = new Game();
@@ -48,6 +51,7 @@ class GameController extends Controller
         $newGame->save();
 
         return to_route('games.show', $newGame->id);
+
 
     }
 
@@ -59,7 +63,9 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
+
         return view('games.show', compact('game'));
+
 
     }
 
