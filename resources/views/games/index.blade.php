@@ -4,7 +4,7 @@
 
     <div class="container">
       <h1>Lista Games</h1>
-        <a href="{{ route('games.create') }}" class="btn btn-primary">Create new Game</a>
+        <a href="{{ route('admin.games.create') }}" class="btn btn-primary">Create new Game</a>
         <hr>
        <table class="table">
         <thead>
@@ -42,10 +42,10 @@
             <td>
                 <nav>
                     <ul class="list-unstyled d-flex gap-2">
-                        <li><a href="{{ route('games.show', $game->id) }}" class="btn btn-primary">Show</a></li>
-                        <li><a href="{{ route('games.edit', $game->id) }}" class="btn btn-secondary">Edit</a></li>
+                        <li><a href="{{ route('admin.games.show', $game->id) }}" class="btn btn-primary">Show</a></li>
+                        <li><a href="{{ route('admin.games.edit', $game->id) }}" class="btn btn-secondary">Edit</a></li>
                         <li>
-                            <form action="{{ route('games.destroy', $game->id) }}" method="POST">
+                            <form action="{{ route('admin.games.destroy', $game->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger">Delete</button>

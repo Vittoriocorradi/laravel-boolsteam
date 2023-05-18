@@ -4,7 +4,7 @@
     <div class="container">
 
         {{-- Form to create a new game --}}
-        <form action="{{ route('games.store') }}" method="POST">
+        <form action="{{ route('admin.games.store') }}" method="POST">
             @csrf
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>

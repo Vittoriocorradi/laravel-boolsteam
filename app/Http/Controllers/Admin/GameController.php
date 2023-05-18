@@ -50,8 +50,7 @@ class GameController extends Controller
         $newGame->fill($data);
         $newGame->save();
 
-        return to_route('games.show', $newGame->id);
-
+        return to_route('admin.games.show', $newGame->id);
 
     }
 
@@ -95,7 +94,7 @@ class GameController extends Controller
 
         $game->update($data);
 
-        return to_route('games.index');
+        return to_route('admin.games.index');
     }
 
     /**
@@ -108,6 +107,6 @@ class GameController extends Controller
     {
         $game->delete();
 
-        return to_route('games.index');
+        return to_route('admin.games.index');
     }
 }
