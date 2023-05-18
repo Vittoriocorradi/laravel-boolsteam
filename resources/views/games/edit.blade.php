@@ -4,7 +4,7 @@
     <div class="container">
 
         {{-- Form to edit an existing game --}}
-        <form action="{{ route('games.update', $game->id) }}" method="POST">
+        <form action="{{ route('admin.games.update', $game->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">

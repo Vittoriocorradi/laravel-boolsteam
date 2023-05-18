@@ -14,7 +14,8 @@
                     </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{-- {{ __('You are logged in!') }} --}}
+                    <a href="{{route('admin.games.index')}}">lista giochi</a>
                 </div>
             </div>
         </div>
