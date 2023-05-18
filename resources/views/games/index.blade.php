@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('page.main')
+
     <div class="container">
       <h1>Lista Games</h1>
         <a href="{{ route('games.create') }}" class="btn btn-primary">Create new Game</a>
@@ -59,3 +60,4 @@
       </table>
     </div>
 @endsection
+
