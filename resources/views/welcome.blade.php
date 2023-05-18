@@ -10,6 +10,9 @@
                 <div class="card-body">
                     Click on login or register in the menu to get started :)
                 </div>
+                <div>
+                    <a href="{{route('games')}}">Lista giochi</a>
+                </div>
             </div>
         </div>
     </div>
