@@ -24,7 +24,6 @@ class GameSeeder extends Seeder
             $newGame->image = $faker->imageUrl();
             $newGame->description = $faker->paragraph();
             $newGame->price = $faker->randomFloat(2, 0, 100);
-            $newGame->genre = $faker->word();
             $newGame->developer = $faker->company();
             $newGame->publisher = $faker->company();
             $newGame->release_Date = $faker->date();

@@ -6,7 +6,7 @@
         <h3>{{ $game->title }}</h3>
             <p>Description: {!! $game->description !!}</p>
             <p>Price: {{ $game->price }}</p>
-            <p>Genre: {{ $game->genre }}</p>
+            <p>Genre: {{ $game->genres->implode('name', ', ') ?: 'No genre' }}</p>
             <p>Developer: {{ $game->developer }}</p>
             <p>Publisher: {{ $game->publisher }}</p>
             <p>Release Date: {{ $game->release_date }}</p>

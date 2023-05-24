@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Game;
 use App\Http\Requests\StoreGameRequest;
 use App\Http\Requests\UpdateGameRequest;
+use App\Models\Genre;
 
 class GameController extends Controller
 {
@@ -31,7 +32,9 @@ class GameController extends Controller
      */
     public function create()
     {
-        return view('games.create');
+        $genres = Genre::all();
+
+        return view('games.create', compact('genres'));
 
     }
 
@@ -43,14 +46,18 @@ class GameController extends Controller
      */
     public function store(StoreGameRequest $request)
     {
-
-        $data =$request->all();
+        
+        $data = $request->validated();
 
         $newGame = new Game();
         $newGame->fill($data);
         $newGame->save();
 
-        return to_route('admin.games.show', $newGame->id);
+        if(isset($data['genres'])) {
+            $newGame->genres()->sync($data['genres']);
+        }
+
+        return to_route('admin.games.index');
 
     }
 
@@ -76,7 +83,9 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        return view('games.edit', compact('game'));
+        $genres = Genre::all();
+
+        return view('games.edit', compact('game', 'genres'));
     }
 
     /**
@@ -88,9 +97,13 @@ class GameController extends Controller
      */
     public function update(UpdateGameRequest $request, Game $game)
     {
-        $request->validated();
+        $data = $request->validated();
 
-        $data = $request->all();
+        if(isset($data['genres'])) {
+            $game->genres()->sync($data['genres']);
+        } else {
+            $game->genres()->detach();
+        }
 
         $game->update($data);
 
