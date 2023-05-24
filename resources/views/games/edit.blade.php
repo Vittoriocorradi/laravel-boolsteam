@@ -32,10 +32,6 @@
                   <input type="text" class="form-control" id="developer" name="developer" value="{{ old('developer', $game->developer) }}">
               </div>
               <div class="mb-3">
-                  <label for="publisher" class="form-label">Publisher</label>
-                  <input type="text" class="form-control" id="publisher" name="publisher" value="{{ old('publisher', $game->publisher) }}">
-              </div>
-              <div class="mb-3">
                   <label for="release_date" class="form-label">Release Date</label>
                   <input type="date" class="form-control" id="release_date" name="release_date" value="{{ old('release_date', $game->release_date) }}">
               </div>
@@ -51,6 +47,17 @@
                   <label for="available_language" class="form-label">Available Language</label>
                   <input type="text" class="form-control" id="available_language" name="available_language" value="{{ old('available_language', $game->available_language) }}">
               </div>
+
+              <div class="mb-3">
+                <label for="publisher_id" class="form-label">Company</label>
+                <select class="form-select" name="publisher_id" id="publisher_id">
+                    <option value="">Select type</option>
+                    @foreach ($publishers as $publisher)
+                        <option value="{{ $publisher->id }}" {{ old('publisher_id', $game->publisher_id) == $publisher->id ? 'selected' : '' }}>{{ $publisher->company }}</option>
+                    @endforeach
+                </select>
+            </div>
+            
               <button type="submit" class="btn btn-primary">Submit</button>
           </form>
     </div>

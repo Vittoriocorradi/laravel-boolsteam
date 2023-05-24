@@ -24,7 +24,7 @@ class UpdateGameRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'publisher_id' => 'nullable|exists:publishers,id'
         ];
     }
 }

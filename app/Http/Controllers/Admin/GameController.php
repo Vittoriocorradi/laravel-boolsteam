@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+
 use App\Http\Controllers\Controller;
 use App\Models\Game;
+use App\Models\Publisher;
 use App\Http\Requests\StoreGameRequest;
 use App\Http\Requests\UpdateGameRequest;
 
@@ -31,8 +33,8 @@ class GameController extends Controller
      */
     public function create()
     {
-        return view('games.create');
-
+        $publishers = Publisher::all();
+        return view('games.create', compact('publishers'));
     }
 
     /**
@@ -76,7 +78,8 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        return view('games.edit', compact('game'));
+        $publishers = Publisher::all();
+        return view('games.edit', compact('game','publishers'));
     }
 
     /**
