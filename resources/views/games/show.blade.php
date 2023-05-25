@@ -8,7 +8,7 @@
             <p>Price: {{ $game->price }}</p>
             <p>Genre: {{ $game->genre }}</p>
             <p>Developer: {{ $game->developer }}</p>
-            <p>Publisher: {{ $game->publisher }}</p>
+            <p>Publisher: {{ $game->publisher->company }}</p>
             <p>Release Date: {{ $game->release_date }}</p>
             <p>Score: {{ $game->score }}</p>
             <p>Original Language: {{ $game->original_language }}</p>
