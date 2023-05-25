@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+
 use App\Http\Controllers\Controller;
 use App\Models\Game;
+use App\Models\Publisher;
 use App\Http\Requests\StoreGameRequest;
 use App\Http\Requests\UpdateGameRequest;
 use App\Models\Genre;
+use Illuminate\Support\Facades\Storage;
 
 class GameController extends Controller
 {
@@ -34,8 +37,10 @@ class GameController extends Controller
     {
         $genres = Genre::all();
 
-        return view('games.create', compact('genres'));
+        return view('games.create', compact('genres', 'publishers'));
 
+        $publishers = Publisher::all();
+        return view('games.create', compact('publishers'));
     }
 
     /**
@@ -50,6 +55,15 @@ class GameController extends Controller
         $data = $request->validated();
 
         $newGame = new Game();
+
+        if(isset($data['image'])){ 
+            
+            $path_img = Storage::put('uploads', $data['image']);
+            //$path_img = Storage::disk('public')->put('uploads', $data['image']);
+            
+            $newGame->image = $path_img;
+        }
+
         $newGame->fill($data);
         $newGame->save();
 
@@ -84,8 +98,9 @@ class GameController extends Controller
     public function edit(Game $game)
     {
         $genres = Genre::all();
+        $publishers = Publisher::all();
 
-        return view('games.edit', compact('game', 'genres'));
+        return view('games.edit', compact('game', 'genres', 'publishers'));
     }
 
     /**
@@ -103,6 +118,18 @@ class GameController extends Controller
             $game->genres()->sync($data['genres']);
         } else {
             $game->genres()->detach();
+        
+        if (isset($data['image'])) {
+            if ($game->image) {
+                Storage::delete($game->image);
+            }
+
+            $game->image = Storage::put('uploads', $data['image']);
+        } else if (empty($data['image'])) {
+            if ($game->image) {
+                Storage::delete($game->image);
+                $game->image = null;
+            }
         }
 
         $game->update($data);

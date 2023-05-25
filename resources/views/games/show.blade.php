@@ -8,11 +8,16 @@
             <p>Price: {{ $game->price }}</p>
             <p>Genre: {{ $game->genres->implode('name', ', ') ?: 'No genre' }}</p>
             <p>Developer: {{ $game->developer }}</p>
-            <p>Publisher: {{ $game->publisher }}</p>
+            <p>Publisher: {{ $game->publisher->company }}</p>
             <p>Release Date: {{ $game->release_date }}</p>
             <p>Score: {{ $game->score }}</p>
             <p>Original Language: {{ $game->original_language }}</p>
             <p>Available Language: {{ $game->available_language }}</p>
+
+            @if ($game->image)
+              <img src="{{ asset('storage/' . $game->image) }}" alt="img">
+            @endif
+
         <div class="d-flex justify-content-center my-5">
             <a href="{{ route('admin.games.index', $game) }}" class="mx-2"><button class="btn btn-primary mx-2">Go back to the list</button></a>
             <a href="{{ route('admin.games.edit', $game) }}" class="mx-2"><button class="btn btn-warning mx-2">Edit details</button></a>

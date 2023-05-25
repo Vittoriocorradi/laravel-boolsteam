@@ -40,6 +40,7 @@ class UpdateGameRequest extends FormRequest
             'original_language' => 'required|string|max:20',
             'available_language' => 'required|string',
             'released' => 'boolean',
+            'publisher_id' => 'nullable|exists:publishers,id',
             'genres' => 'nullable|exists:genres,id',
         ];
     }
