@@ -13,7 +13,7 @@
             <th scope="col">Image</th>
             <th scope="col">Description</th>
             <th scope="col">Price</th>
-            <th scope="col">Genre</th>
+            {{-- <th scope="col">Genre</th> --}}
             <th scope="col">Developer</th>
             <th scope="col">Publisher</th>
             <th scope="col">Release Date</th>
@@ -31,7 +31,7 @@
             <td>{{ $game->image }}</td>
             <td>{{ $game->description }}</td>
             <td>{{ $game->price }}</td>
-            <td>{{ $game->genre }}</td>
+            {{-- <td>{{ $game->genre }}</td> --}}
             <td>{{ $game->developer }}</td>
             <td>{{ $game->publisher->company }}</td>
             <td>{{ $game->release_date }}</td>

@@ -3,6 +3,16 @@
 @section('page.main')
     <div class="container">
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         {{-- Form to edit an existing game --}}
         <form action="{{ route('admin.games.update', $game->id) }}" method="POST"  enctype="multipart/form-data">
             @csrf
@@ -23,17 +33,35 @@
                   <label for="price" class="form-label">Price</label>
                   <input type="number" step="0.01" class="form-control" id="price" name="price" value="{{ old('price', $game->price) }}">
             </div>
-            <div class="mb-3">
-                  <label for="genre" class="form-label">Genre</label>
-                  <input type="text" class="form-control" id="genre" name="genre" value="{{ old('genre', $game->genre) }}">
-            </div>
+            @if ($errors->any())
+                <div class="mb-3">
+                    <div class="mb-3">Genres</div>
+                    @foreach ($genres as $genre)
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="genres" value="{{ $genre->id }}" name="genres[]"
+                                {{ in_array($genre->id, old('genres', [])) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="genres">{{ $genre->name }}</label>
+                        </div>
+                    @endforeach
+
+                </div>
+            @else
+                <div class="mb-3">
+                    <div class="mb-3">Genres</div>
+
+                    @foreach ($genres as $genre)
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="genres" value="{{ $genre->id }}"
+                                name="genres[]"
+                                {{ $game->genres->contains($genre->id) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="genres">{{ $genre->name }}</label>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
             <div class="mb-3">
                   <label for="developer" class="form-label">Developer</label>
                   <input type="text" class="form-control" id="developer" name="developer" value="{{ old('developer', $game->developer) }}">
-            </div>
-            <div class="mb-3">
-                  <label for="publisher" class="form-label">Publisher</label>
-                  <input type="text" class="form-control" id="publisher" name="publisher" value="{{ old('publisher', $game->publisher) }}">
             </div>
             <div class="mb-3">
 

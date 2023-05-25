@@ -8,6 +8,7 @@ use App\Models\Game;
 use App\Models\Publisher;
 use App\Http\Requests\StoreGameRequest;
 use App\Http\Requests\UpdateGameRequest;
+use App\Models\Genre;
 use Illuminate\Support\Facades\Storage;
 
 class GameController extends Controller
@@ -34,6 +35,10 @@ class GameController extends Controller
      */
     public function create()
     {
+        $genres = Genre::all();
+
+        return view('games.create', compact('genres', 'publishers'));
+
         $publishers = Publisher::all();
         return view('games.create', compact('publishers'));
     }
@@ -46,8 +51,8 @@ class GameController extends Controller
      */
     public function store(StoreGameRequest $request)
     {
-
-        $data =$request->all();
+        
+        $data = $request->validated();
 
         $newGame = new Game();
 
@@ -62,7 +67,11 @@ class GameController extends Controller
         $newGame->fill($data);
         $newGame->save();
 
-        return to_route('admin.games.show', $newGame->id);
+        if(isset($data['genres'])) {
+            $newGame->genres()->sync($data['genres']);
+        }
+
+        return to_route('admin.games.index');
 
     }
 
@@ -88,8 +97,10 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
+        $genres = Genre::all();
         $publishers = Publisher::all();
-        return view('games.edit', compact('game','publishers'));
+
+        return view('games.edit', compact('game', 'genres', 'publishers'));
     }
 
     /**
@@ -101,9 +112,12 @@ class GameController extends Controller
      */
     public function update(UpdateGameRequest $request, Game $game)
     {
-        $request->validated();
+        $data = $request->validated();
 
-        $data = $request->all();
+        if(isset($data['genres'])) {
+            $game->genres()->sync($data['genres']);
+        } else {
+            $game->genres()->detach();
         
         if (isset($data['image'])) {
             if ($game->image) {
