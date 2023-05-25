@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Game extends Model
+class Publisher extends Model
 {
     use HasFactory;
 
-
-    protected $guarded = ['image'];
-
-    public function publisher(){
-        return $this->belongsTo(Publisher::class);
+    public function game(){
+        return $this->hasMany(Game::class);
     }
+
 
 }

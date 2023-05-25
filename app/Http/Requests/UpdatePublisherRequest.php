@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateGameRequest extends FormRequest
+class UpdatePublisherRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class UpdateGameRequest extends FormRequest
     public function rules()
     {
         return [
-            'publisher_id' => 'nullable|exists:publishers,id'
+            //
         ];
     }
 }
