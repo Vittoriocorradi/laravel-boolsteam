@@ -4,7 +4,7 @@
     <div class="container">
 
         {{-- Form to create a new game --}}
-        <form action="{{ route('admin.games.store') }}" method="POST">
+        <form action="{{ route('admin.games.store') }}" method="POST"  enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
@@ -12,7 +12,7 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
-                <input type="text" class="form-control" id="image" name="image" value="{{ old('image') }}">
+                <input type="file" class="form-control" id="image" name="image">
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>

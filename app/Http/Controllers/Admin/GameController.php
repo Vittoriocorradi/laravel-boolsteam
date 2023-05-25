@@ -8,6 +8,7 @@ use App\Models\Game;
 use App\Models\Publisher;
 use App\Http\Requests\StoreGameRequest;
 use App\Http\Requests\UpdateGameRequest;
+use Illuminate\Support\Facades\Storage;
 
 class GameController extends Controller
 {
@@ -49,6 +50,15 @@ class GameController extends Controller
         $data =$request->all();
 
         $newGame = new Game();
+
+        if(isset($data['image'])){ 
+            
+            $path_img = Storage::put('uploads', $data['image']);
+            //$path_img = Storage::disk('public')->put('uploads', $data['image']);
+            
+            $newGame->image = $path_img;
+        }
+
         $newGame->fill($data);
         $newGame->save();
 
@@ -94,6 +104,19 @@ class GameController extends Controller
         $request->validated();
 
         $data = $request->all();
+        
+        if (isset($data['image'])) {
+            if ($game->image) {
+                Storage::delete($game->image);
+            }
+
+            $game->image = Storage::put('uploads', $data['image']);
+        } else if (empty($data['image'])) {
+            if ($game->image) {
+                Storage::delete($game->image);
+                $game->image = null;
+            }
+        }
 
         $game->update($data);
 
