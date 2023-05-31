@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 
-@section('page.main')
+@section('content')
     <div class="container">
         <h3>{{ $game->title }}</h3>
             <p>Description: {!! $game->description !!}</p>

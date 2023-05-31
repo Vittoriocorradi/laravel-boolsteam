@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
-@section('page.main')
+@section('content')
 
     <div class="container">
       <h1>Lista Games</h1>
