@@ -36,11 +36,11 @@ class GameController extends Controller
     public function create()
     {
         $genres = Genre::all();
+        $publishers = Publisher::all();
 
         return view('games.create', compact('genres', 'publishers'));
 
-        $publishers = Publisher::all();
-        return view('games.create', compact('publishers'));
+        // return view('games.create', compact('publishers'));
     }
 
     /**
@@ -118,7 +118,7 @@ class GameController extends Controller
             $game->genres()->sync($data['genres']);
         } else {
             $game->genres()->detach();
-        
+        }
         if (isset($data['image'])) {
             if ($game->image) {
                 Storage::delete($game->image);

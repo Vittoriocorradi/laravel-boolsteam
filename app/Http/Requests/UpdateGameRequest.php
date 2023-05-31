@@ -34,7 +34,7 @@ class UpdateGameRequest extends FormRequest
             'description' => 'required|string',
             'price' => 'required|numeric|lt:1000',
             'developer' => 'required|string|max:70',
-            'publisher' => 'required|string|max:70',
+            // 'publisher' => 'required|string|max:70',
             'release_date' => 'required|date',
             'score' => 'nullable|numeric|max:10',
             'original_language' => 'required|string|max:20',

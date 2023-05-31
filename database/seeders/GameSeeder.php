@@ -17,7 +17,7 @@ class GameSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for($i = 0; $i <50 ; $i++){
+        for($i = 0; $i < 15 ; $i++){
 
             $newGame = new Game();
 

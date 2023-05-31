@@ -33,7 +33,7 @@
             <td>{{ $game->price }}</td>
             {{-- <td>{{ $game->genre }}</td> --}}
             <td>{{ $game->developer }}</td>
-            <td>{{ $game->publisher->company }}</td>
+            {{-- <td>{{ $game->publisher->company }}</td> --}}
             <td>{{ $game->release_date }}</td>
             <td>{{ $game->score }}</td>
             <td>{{ $game->original_language }}</td>
