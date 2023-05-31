@@ -17,7 +17,7 @@ class GenreSeeder extends Seeder
      */
     public function run()
     {
-        $genres = ['Horror', 'SciFi', 'Action', 'RPG', 'Sport', 'Shooter', 'Sims', 'Adventure', 'City Building'];
+        $genres = ['Multigiocatore', 'Sparatutto in prima persona', 'Zombi', 'Sparatutto', 'Azione', 'Prima persona', 'Giocatore singolo', 'Co-op', 'Futuristici', 'Illuminati', 'Eroe sparatutto', 'Robot', 'Fantascienza', 'Competitivi', 'Strategia', 'Simulazione', 'GDR', 'Medievali', 'Strategia su vasta scala', 'Mondo aperto', 'Avventura', 'Sandbox', 'Corse', 'Guida', 'Simulatori di veicoli', 'GDR multigiocatore di massa', 'Free-to-Play', 'GDR d\'azione', 'Hack & Slash', 'Spazio', '4X'];
 
         Schema::disableForeignKeyConstraints();
         Genre::truncate();
