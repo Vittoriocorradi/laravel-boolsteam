@@ -7,6 +7,7 @@ use App\Models\Game;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Schema;
 
 class GameSeeder extends Seeder
 {
@@ -17,6 +18,10 @@ class GameSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+        Schema::disableForeignKeyConstraints();
+        Game::truncate();
+        Schema::enableForeignKeyConstraints();
+
         for($i = 0; $i < 15 ; $i++){
 
             $newGame = new Game();
@@ -26,6 +31,7 @@ class GameSeeder extends Seeder
             $newGame->image = $faker->imageUrl();
             $newGame->description = $faker->paragraph();
             $newGame->price = $faker->randomFloat(2, 0, 100);
+            $newGame->discount = $faker->randomFloat(2, 0, 1);
             $newGame->developer = $faker->company();
             $newGame->release_Date = $faker->date();
             $newGame->score = $faker->numberBetween(0, 10);

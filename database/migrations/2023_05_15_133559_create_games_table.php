@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->text('description');
             $table->string('price', 10);
-            $table->float('discount', 3, 2);
+            $table->float('discount', 3, 2)->default(0);
             $table->string('genre');
             $table->string('developer', 70);
             $table->date('release_date');
