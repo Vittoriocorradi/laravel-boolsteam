@@ -33,7 +33,7 @@
             <td>{{ $game->price }}</td>
             {{-- <td>{{ $game->genre }}</td> --}}
             <td>{{ $game->developer }}</td>
-            {{-- <td>{{ $game->publisher->company }}</td> --}}
+            <td>{{ $game->publisher->company }}</td>
             <td>{{ $game->release_date }}</td>
             <td>{{ $game->score }}</td>
             <td>{{ $game->original_language }}</td>
@@ -43,6 +43,12 @@
                 <nav>
                     <ul class="list-unstyled d-flex gap-2">
                         <li><a href="{{ route('admin.games.show', $game->id) }}" class="btn btn-primary">Show</a></li>
+                        <form action="{{ route('admin.highlight.update', $game)}}" method="POST">
+                          @method('PATCH')
+                          @csrf
+
+                          <li><button class="btn btn-secondary">Highlight</button></li>
+                        </form>
                         <li><a href="{{ route('admin.games.edit', $game->id) }}" class="btn btn-secondary">Edit</a></li>
                         <li>
                             <form action="{{ route('admin.games.destroy', $game->id) }}" method="POST">

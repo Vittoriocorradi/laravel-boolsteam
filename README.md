@@ -1,40 +1,12 @@
-Progetto Games
+# Boolsteam backend
 
-model-migration-seeder-controller
+## Roadmap
 
-Installazione progetto laravel da template e installazione di partenza
-Collegare un database
-Creare la struttura della tabella games -> migrations -> games
-
-title
-image
-description
-price
-genre
-developer
-publisher   
-release_date
-score
-original_language
-available_language
-
-
-Creare un modello per la gestione dei dati -> Game
-Filliamo la tabella con informazioni Fake (faker)
-Creiamo un controller -> Admin/GameController - resource controller
-Creiamo le rotte relative al controller --resource
-view
-
-layout
-partials -> header e footer
-games/ -- index -- show -- create -- edit
-php artisan make:model -cmsrR
-
-
-Ruoli
-
-Migration
-Seeder
-CRUD
-View
-Validation
+- Gestire la cancellazione dell'immagine
+- Dire che il gioco è rilasciato a seconda della data di rilascio
+- Gestire da backend le crud di platforms, genres e publisher
+- Creare una modale per la cancellazione di un gioco
+- Aggiungere a show le platforms
+- Migliore la componente grafica del backoffice per renderla più leggibile
+- Aggiungere una flag per far vedere quale gioco è in rilievo
+- Aggiustare lo scaffolding delle views

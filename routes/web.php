@@ -32,6 +32,8 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
 
     Route::resource('games', GameController::class);
 
+    Route::patch('games/highlight/{game}', [GameController::class, 'highlight'])->name('highlight.update');
+
 
    /*  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

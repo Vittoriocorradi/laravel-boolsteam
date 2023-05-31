@@ -9,6 +9,7 @@ use App\Models\Publisher;
 use App\Http\Requests\StoreGameRequest;
 use App\Http\Requests\UpdateGameRequest;
 use App\Models\Genre;
+use App\Models\Platform;
 use Illuminate\Support\Facades\Storage;
 
 class GameController extends Controller
@@ -37,8 +38,9 @@ class GameController extends Controller
     {
         $genres = Genre::all();
         $publishers = Publisher::all();
+        $platforms = Platform::all();
 
-        return view('games.create', compact('genres', 'publishers'));
+        return view('games.create', compact('genres', 'publishers', 'platforms'));
 
         // return view('games.create', compact('publishers'));
     }
@@ -99,8 +101,9 @@ class GameController extends Controller
     {
         $genres = Genre::all();
         $publishers = Publisher::all();
+        $platforms = Platform::all();
 
-        return view('games.edit', compact('game', 'genres', 'publishers'));
+        return view('games.edit', compact('game', 'genres', 'publishers', 'platforms'));
     }
 
     /**
@@ -119,18 +122,23 @@ class GameController extends Controller
         } else {
             $game->genres()->detach();
         }
+        if(isset($data['platforms'])) {
+            $game->platforms()->sync($data['platforms']);
+        } else {
+            $game->platforms()->detach();
+        }
         if (isset($data['image'])) {
             if ($game->image) {
                 Storage::delete($game->image);
             }
 
             $game->image = Storage::put('uploads', $data['image']);
-        } else if (empty($data['image'])) {
-            if ($game->image) {
-                Storage::delete($game->image);
-                $game->image = null;
-            }
-        }
+        } //else if (empty($data['image'])) {
+        //     if ($game->image) {
+        //         Storage::delete($game->image);
+        //         $game->image = null;
+        //     }
+        // }
 
         $game->update($data);
 
@@ -146,6 +154,19 @@ class GameController extends Controller
     public function destroy(Game $game)
     {
         $game->delete();
+
+        return to_route('admin.games.index');
+    }
+
+    public function highlight(Game $game) {
+        $old_highlight = Game::where('highlighted', true)->first();
+        
+        if($old_highlight) {
+            $old_highlight->highlighted = false;
+            $old_highlight->update();
+        }   
+        $game->update(['highlighted' => true]);
+
 
         return to_route('admin.games.index');
     }
