@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->text('description');
             $table->string('price', 10);
+            $table->float('discount', 3, 2);
             $table->string('genre');
             $table->string('developer', 70);
             $table->date('release_date');
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->string('original_language', 20);
             $table->text('available_language');
             $table->boolean('released')->default(true);
+            $table->boolean('highlighted')->default(false);
             $table->timestamps();
         });
     }
