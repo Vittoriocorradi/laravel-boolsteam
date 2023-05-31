@@ -28,7 +28,7 @@ class StoreGameRequest extends FormRequest
             'image' => 'nullable|image|max:2048',
             'description' => 'required|string',
             'price' => 'required|numeric|lt:1000',
-            'discount' => 'nullable|numeric|min:0|max:1',
+            'discount' => 'numeric|min:0|max:1',
             'developer' => 'required|string|max:70',
             'platforms' => 'required|exists:platforms,id',
             'release_date' => 'required|date',
