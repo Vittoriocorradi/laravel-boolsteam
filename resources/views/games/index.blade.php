@@ -9,6 +9,7 @@
        <table class="table">
         <thead>
           <tr>
+            <th scope="col">Highlighted</th>
             <th scope="col">Title</th>
             <th scope="col">Image</th>
             <th scope="col">Description</th>
@@ -27,8 +28,9 @@
         <tbody>
             @foreach ($games as $game)
           <tr>
+            <td>@if($game->highlighted == true) <button class="btn btn-sm btn-warning">highlight</button> @endif</td>
             <td>{{ $game->title }}</td>
-            <td>{{ $game->image }}</td>
+            <td>@if($game->image) <button class="btn btn-sm btn-success">yes</button>@endif</td>
             <td>{{ $game->description }}</td>
             <td>{{ $game->price }}</td>
             {{-- <td>{{ $game->genre }}</td> --}}
