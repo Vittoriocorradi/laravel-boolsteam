@@ -15,7 +15,7 @@
             <p>Available Language: {{ $game->available_language }}</p>
 
             @if ($game->image)
-              <img src="{{ asset('storage/' . $game->image) }}" alt="img">
+              <img src="{{ $game->image }}" alt="img">
             @endif
 
         <div class="d-flex justify-content-center my-5">
