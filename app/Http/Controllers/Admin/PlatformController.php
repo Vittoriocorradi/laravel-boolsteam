@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Platform;
 use App\Http\Requests\StorePlatformRequest;
 use App\Http\Requests\UpdatePlatformRequest;
+use Illuminate\Support\Str;
 
 class PlatformController extends Controller
 {
@@ -15,7 +17,9 @@ class PlatformController extends Controller
      */
     public function index()
     {
-        //
+        $platforms = Platform::all();
+
+        return view('platforms.index', compact('platforms'));
     }
 
     /**
@@ -25,7 +29,7 @@ class PlatformController extends Controller
      */
     public function create()
     {
-        //
+        return view('platforms.create');
     }
 
     /**
@@ -36,7 +40,15 @@ class PlatformController extends Controller
      */
     public function store(StorePlatformRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $newPlatform = new Platform();
+
+        $newPlatform->fill($data);
+        $newPlatform->slug = Str::slug($data['name']);
+        $newPlatform->save();
+
+        return to_route('admin.platforms.index');
     }
 
     /**
@@ -58,7 +70,7 @@ class PlatformController extends Controller
      */
     public function edit(Platform $platform)
     {
-        //
+        return view('platforms.edit', compact('platform'));
     }
 
     /**
@@ -70,7 +82,13 @@ class PlatformController extends Controller
      */
     public function update(UpdatePlatformRequest $request, Platform $platform)
     {
-        //
+        $data = $request->validated();
+
+        $platform->slug = Str::slug($data['name']);
+
+        $platform->update($data);
+
+        return to_route('admin.platforms.index');
     }
 
     /**
@@ -81,6 +99,8 @@ class PlatformController extends Controller
      */
     public function destroy(Platform $platform)
     {
-        //
+        $platform->delete();
+
+        return to_route('admin.platforms.index');
     }
 }
