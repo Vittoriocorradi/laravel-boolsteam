@@ -19,7 +19,7 @@
             @endif
 
         <div class="d-flex justify-content-center my-5">
-            <a href="{{ route('admin.games.index', $game) }}" class="mx-2"><button class="btn btn-primary mx-2">Go back to the list</button></a>
+            <a href="{{ route('admin.games.index', $game) }}" class="mx-2"><button class="btn btn-primary mx-2">Go back to Games</button></a>
             <a href="{{ route('admin.games.edit', $game) }}" class="mx-2"><button class="btn btn-warning mx-2">Edit details</button></a>
 
             <form action="{{ route('admin.games.destroy', $game) }}" method="POST" class="mx-2">
