@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GameController;
+use App\Http\Controllers\Admin\PlatformController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,8 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::resource('games', GameController::class);
 
     Route::patch('games/highlight/{game}', [GameController::class, 'highlight'])->name('highlight.update');
+
+    Route::resource('platforms', PlatformController::class);
 
 
    /*  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
